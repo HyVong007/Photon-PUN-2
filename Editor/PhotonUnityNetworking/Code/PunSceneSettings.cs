@@ -68,7 +68,7 @@ namespace Photon.Pun
 				//    punSceneSettingsCsPath = punSceneSettingsCsPath + "/" + SceneSettingsFileName;
 				//}
 
-				punSceneSettingsCsPath = "packages/exitgames.client.pun2/Editor/PhotonUnityNetworking/Code/PunSceneSettings.cs";
+				punSceneSettingsCsPath = "packages/com.photonengine.pun2/Editor/PhotonUnityNetworking/Code/";
 
 				return punSceneSettingsCsPath;
 			}
@@ -86,14 +86,14 @@ namespace Photon.Pun
 					return instanceField;
 				}
 
-				instanceField = AssetDatabase.LoadAssetAtPath<PunSceneSettings>(PunSceneSettingsCsPath);
+				instanceField = AssetDatabase.LoadAssetAtPath<PunSceneSettings>($"{PunSceneSettingsCsPath}PunSceneSettings.cs");
 				if (instanceField == null)
 				{
 					instanceField = CreateInstance<PunSceneSettings>();
 #pragma warning disable 0168
 					try
 					{
-						AssetDatabase.CreateAsset(instanceField, PunSceneSettingsCsPath);
+						AssetDatabase.CreateAsset(instanceField, $"{PunSceneSettingsCsPath}{SceneSettingsFileName}");
 					}
 					catch (Exception e)
 					{
